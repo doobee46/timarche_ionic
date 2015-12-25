@@ -1,11 +1,5 @@
-angular.module('starter.controllers', [])
-
-.controller('DashCtrl', function($scope, Products) {
-  $scope.products = Products.all();
-  console.log('the product',$scope.products)
-})
-
-.controller('ChatsCtrl', function($scope, Chats, Products) {
+'use strict';
+app.controller('ChatsCtrl', function($scope, Chats, Products) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -23,14 +17,4 @@ angular.module('starter.controllers', [])
     console.log('button was clicked ', product, $scope.image);
     Products.saveProduct(product, $scope.image)
   }
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
 });

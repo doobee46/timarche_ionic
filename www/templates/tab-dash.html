@@ -1,28 +1,20 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
+    <ion-item class="list card padding" ng-repeat="product in products">
+        <div class="item item-avatar">
+          <img src="avatar.jpg">
+          <h2>{{product.nme}}</h2>
+          <p>{{product.tagline}}</p>
         </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
+
+        <div class="item-image">
+          <img class ="product_image"src="{{product.image}}">
         </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
-    </div>
+
+        <a class="item item-icon-left assertive" href="#">
+          <i class="icon ion-ios-pricetag-outline"></i>
+          {{product.price}}gdes
+        </a>
+    </ion-item>
   </ion-content>
 </ion-view>
