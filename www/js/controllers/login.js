@@ -1,5 +1,5 @@
 'use strict';
-app.controller('LoginCtrl',function($scope,$ionicPopup){
+app.controller('LoginCtrl',function($scope, $state, $ionicPopup, Auth){
   $scope.emailLogin = function(){
     console.log('button was clicked on login');
     $scope.user = {};
@@ -8,17 +8,32 @@ app.controller('LoginCtrl',function($scope,$ionicPopup){
   // An elaborate, custom popup
   var myPopup = $ionicPopup.show({
     templateUrl: 'templates/partials/login.html',
-    title: 'Signin',
+    title: 'Signin or Register',
     subTitle: 'Please signin to browse',
     scope: $scope,
     buttons: [
-      { text: 'Cancel' },
+      { text: '<b>Login</b>',
+      type: 'button-energized',
+      onTap: function(user) {
+       user = $scope.user;
+        Auth.login(user).then(function(){
+         $state.go('tab.dash');
+         }, function(err){
+         console.log('Error....',err);
+        });
+        }
+       },
       {
         text: '<b>Register</b>',
-        type: 'button-positive',
+        type: 'button-calm',
         onTap: function(user) {
          user = $scope.user;
-         console.log('the user is ',user);
+         Auth.register(user).then(function(){
+           console.log('user was registered successfully');
+           $state.go('tab.dash');
+         },function(err){
+         console.log('Error....',err);
+         });
         }
       }
     ]
